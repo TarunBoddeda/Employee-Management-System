@@ -21,6 +21,8 @@ const Login = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            setEmail("");
+            setPassword("");
           }}
           className="flex flex-col justify-center pt-[35%] gap-5 "
         >
