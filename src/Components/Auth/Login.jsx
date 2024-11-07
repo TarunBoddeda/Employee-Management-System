@@ -6,7 +6,7 @@ import { IoMdCheckbox } from "react-icons/io";
 import { BiHide } from "react-icons/bi";
 import { BiShowAlt } from "react-icons/bi";
 
-const Login = () => {
+const Login = ({ handleLogin }) => {
   const [checked, setIsChecked] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
@@ -21,6 +21,7 @@ const Login = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            handleLogin(email, password);
             setEmail("");
             setPassword("");
           }}

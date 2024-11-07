@@ -10,6 +10,14 @@ body {
   background-color: #000;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 #taskList::-webkit-scrollbar {
   display: none;
 }
+
+/* #admin::-webkit-scrollbar {
+  display: none;
+} */
