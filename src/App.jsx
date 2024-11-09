@@ -7,16 +7,9 @@ import { AuthContext } from "./Context/AuthProvider";
 const App = () => {
   const [user, setUser] = useState(null);
 
-  const authData = useContext(AuthContext);
+  const [loggedInUserData, setLoggedInUserData] = useState(null);
 
-  useEffect(() => {
-    if (authData) {
-      const loggedInUser = localStorage.getItem("Logged In User");
-      if (loggedInUser) {
-        setUser(loggedInUser.role);
-      }
-    }
-  }, [authData]);
+  const authData = useContext(AuthContext);
 
   const handleLogin = (email, password) => {
     if (
@@ -24,11 +17,20 @@ const App = () => {
       authData.admin.find((e) => e.email == email && e.password == password)
     ) {
       setUser("admin");
-    } else if (
-      authData &&
-      authData.employees.find((e) => e.email == email && e.password == password)
-    ) {
-      setUser("employee");
+      setLoggedInUserData(admin);
+      localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
+    } else if (authData) {
+      const employee = authData.employees.find(
+        (e) => e.email == email && e.password == password
+      );
+      if (employee) {
+        setUser("employee");
+        setLoggedInUserData(employee);
+        localStorage.setItem(
+          "loggedInUser",
+          JSON.stringify({ role: "employee" })
+        );
+      }
     } else {
       alert("Invalid Credentials!");
     }
@@ -37,9 +39,22 @@ const App = () => {
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
-      {user == "employee" ? <EmployeeDashboard /> : <AdminDashboard />}
+      {user == "admin" ? (
+        <AdminDashboard />
+      ) : user == "employee" ? (
+        <EmployeeDashboard data={loggedInUserData} />
+      ) : null}
     </>
   );
 };
 
 export default App;
+
+// useEffect(() => {
+//   if (authData) {
+//     const loggedInUser = localStorage.getItem("Logged In User");
+//     if (loggedInUser) {
+//       setUser(loggedInUser.role);
+//     }
+//   }
+// }, [authData]);
