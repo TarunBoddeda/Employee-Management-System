@@ -4,6 +4,7 @@ import TaskListNumber from "../Others/TaskListNumber";
 import TaskList from "../Task/TaskList";
 
 const EmployeeDashboard = ({ data }) => {
+  // console.log(data);
   return (
     <>
       <div className="p-10">

@@ -2,7 +2,7 @@ import React from "react";
 
 const FailedTask = () => {
   return (
-    <div className="flex-shrink-0 w-[320px] h-fit p-3 rounded-lg bg-yellow-400">
+    <div className="flex-shrink-0 w-[320px] h-fit p-3 rounded-lg bg-red-400">
       <div className="flex justify-between items-center">
         <button className="bg-red-600 hover:bg-red-800 px-3 py-1 rounded-md">
           High
@@ -20,7 +20,7 @@ const FailedTask = () => {
         </p>
       </div>
       <div className="mt-2 w-full">
-        <button className="bg-yellow-500 hover:bg-yellow-600 px-3 py-1 rounded-md w-full text-white">
+        <button className="bg-red-500 hover:bg-red-600 px-3 py-1 rounded-md w-full text-white">
           Failed Task
         </button>
       </div>
